@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {Pokemon} from '../models/pokemon/pokemon';
 import {ListResult} from '../models/pokemon/list_result';
 import {defaultTake, firstPage} from '../utils/constants';
-import {Pokedex} from '../models/pokemon/ pokedex';
+import {Pokedex} from '../models/pokemon/pokedex';
 
 export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
