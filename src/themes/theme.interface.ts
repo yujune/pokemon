@@ -1,4 +1,4 @@
-import {ColorValue} from 'react-native';
+import {ColorValue, StyleProp, TextStyle} from 'react-native';
 import {AppFont} from '../utils/enums/font';
 
 export type ThemeType = 'light' | 'dark';
@@ -14,6 +14,10 @@ export interface IAppTheme {
     inputBackground?: ColorValue;
     bottomTabActiveColor?: ColorValue;
     bottomTabInActiveColor?: ColorValue;
+    tabActive?: ColorValue;
+    tabInActive?: ColorValue;
+    tabLabelActive?: ColorValue;
+    tabLabelInActive?: ColorValue;
   };
   spacing: {
     small: number;
@@ -32,5 +36,15 @@ export interface IAppTheme {
     regular: AppFont;
     bold: AppFont;
     italic: AppFont;
+  };
+
+  text?: {
+    bodySmall?: StyleProp<TextStyle>;
+    bodyMedium?: StyleProp<TextStyle>;
+    bodyLarge?: StyleProp<TextStyle>;
+    headerSmall?: StyleProp<TextStyle>;
+    headerMedium?: StyleProp<TextStyle>;
+    headerLarge?: StyleProp<TextStyle>;
+    titleLarge?: StyleProp<TextStyle>;
   };
 }
