@@ -18,6 +18,8 @@ export interface IAppTheme {
     tabInActive?: ColorValue;
     tabLabelActive?: ColorValue;
     tabLabelInActive?: ColorValue;
+    progress?: ColorValue;
+    progressBorder?: ColorValue;
   };
   spacing: {
     small: number;

@@ -18,6 +18,8 @@ export const APP_DEFAULT_THEME: IAppTheme = {
     background: AppColor.white,
     tabActive: AppColor.pattensBlue,
     tabInActive: AppColor.white,
+    progress: AppColor.deepSkyBlue,
+    progressBorder: AppColor.deepSkyBlue,
   },
 
   spacing: {
