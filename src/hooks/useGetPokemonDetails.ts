@@ -12,5 +12,6 @@ export const useGetPokemonDetails = (name: string) => {
   return useQuery({
     queryKey: ['pokemonDetails'],
     queryFn: _getPokemonDetails,
+    cacheTime: 0,
   });
 };
