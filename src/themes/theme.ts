@@ -20,6 +20,7 @@ export const APP_DEFAULT_THEME: IAppTheme = {
     tabInActive: AppColor.white,
     progress: AppColor.deepSkyBlue,
     progressBorder: AppColor.deepSkyBlue,
+    border: AppColor.seaShell,
   },
 
   spacing: {

@@ -20,6 +20,7 @@ export interface IAppTheme {
     tabLabelInActive?: ColorValue;
     progress?: ColorValue;
     progressBorder?: ColorValue;
+    border?: ColorValue;
   };
   spacing: {
     small: number;
