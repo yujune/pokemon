@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {useGetPokemonDetails} from '../../hooks/useGetPokemonDetails';
 import {Props} from './PokemonDetailsScreen.type';
 import {LoadingIndicator} from '../../components/loading/LoadingIndicator';
@@ -11,6 +11,9 @@ import {useCustomTheme} from '../../context/theme/theme_provider';
 import {style} from './PokemonDetailsScreen.style';
 import {AppColor} from '../../utils/color';
 import {AlertUtil} from '../../utils/alert';
+import {useGetPokemonSpecies} from '../../hooks/useGetPokemonSpecies';
+import {extractIdFromUrl} from '../../utils/general-helper';
+import {PokemonEvolutionScreen} from '../evolution/PokemonEvolutionScreen';
 
 const TABS = [
   {
@@ -27,8 +30,10 @@ const TABS = [
 export const PokemonDetailsScreen: FC<Props> = ({route}) => {
   const {theme} = useCustomTheme();
   const scrollValue = useSharedValue(0);
+  const [evolutionId, setEvolutionId] = useState('');
   const {data, isFetching, refetch, remove, isError, error} =
     useGetPokemonDetails(route.params.name);
+  const {data: speciesResponse, updateSpeciesId} = useGetPokemonSpecies();
 
   const onRefresh = async () => {
     //TO FIX: remove method will cause entire FlatList to re-render.
@@ -39,8 +44,27 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
   function onScroll(e: NativeScrollEvent) {
     'worklet';
     scrollValue.value = e.contentOffset.y;
-    console.log(scrollValue.value);
   }
+
+  useEffect(() => {
+    const evolutionUrl = speciesResponse?.data?.evolution_chain?.url;
+    if (evolutionUrl != null && evolutionUrl?.length > 0) {
+      const id = extractIdFromUrl(evolutionUrl);
+      if (id != null) {
+        setEvolutionId(id);
+      }
+    }
+  }, [speciesResponse?.data?.evolution_chain?.url]);
+
+  useEffect(() => {
+    const speciesUrl = data?.data.species.url;
+    if (speciesUrl != null && speciesUrl?.length > 0) {
+      const speciesId = extractIdFromUrl(speciesUrl);
+      if (speciesId != null) {
+        updateSpeciesId(speciesId);
+      }
+    }
+  }, [data?.data.species.url]);
 
   useEffect(() => {
     if (isError) {
@@ -83,7 +107,7 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
         )}
         showsVerticalScrollIndicator={false}>
         <PokemonStatsScreen />
-        <PokemonStatsScreen />
+        <PokemonEvolutionScreen evolutionId={evolutionId} />
         <PokemonStatsScreen />
       </TabbedHeaderPager>
     </>
