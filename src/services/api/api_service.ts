@@ -2,6 +2,8 @@ import axios, {Axios} from 'axios';
 import {ListResult} from '../../models/pokemon/list_result';
 import {Pokemon} from '../../models/pokemon/pokemon';
 import {Pokedex} from '../../models/pokemon/pokedex';
+import {Species} from '../../models/pokemon/species';
+import {Evolution} from '../../models/pokemon/evolution';
 
 export const DEFAULT_AXIOS_INSTANCE = axios.create({
   baseURL: 'https://pokeapi.co/api/v2/',
@@ -32,6 +34,24 @@ export class Api {
   async getPokemonDetails(name: string) {
     try {
       return this.instance.get<Pokedex>(`/pokemon/${name}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async getPokemonSpecies(speciesId: string) {
+    try {
+      return this.instance.get<Species>(`/pokemon-species/${speciesId}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async getPokemonEvolutionChain(evolutionId: string) {
+    try {
+      return this.instance.get<Evolution>(`/evolution-chain/${evolutionId}`);
     } catch (error) {
       console.error(error);
       throw error;
