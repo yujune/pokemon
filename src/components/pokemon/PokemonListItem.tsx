@@ -5,13 +5,17 @@ import {style} from './PokemonListItem.style';
 import {getPokemonImageUrl} from '../../utils/general-helper';
 import {useCustomTheme} from '../../context/theme/theme_provider';
 
-export const PokemonListItem: FC<Props> = ({name, onPressed}) => {
+export const PokemonListItem: FC<Props> = ({
+  name,
+  onPressed,
+  containerStyle,
+}) => {
   const {
     theme: {color},
   } = useCustomTheme();
   return (
     <Pressable
-      style={style.container}
+      style={[style.container, containerStyle]}
       onPress={() => {
         onPressed?.(name);
       }}>
