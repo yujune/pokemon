@@ -1,8 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {AppSpacing} from '../../themes/theme';
-import {AppColor} from '../../utils/color';
+import {AppSpacing} from '../../../themes/theme';
 
 export const style = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
   evolutionItem: {
     flex: 1,
   },
@@ -10,12 +12,9 @@ export const style = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: AppSpacing.standard,
   },
-  border: {
-    borderBottomColor: AppColor.seaShell,
-    borderBottomWidth: 2,
-  },
   fastForwardIcon: {
     alignSelf: 'center',
     alignItems: 'center',
+    flex: 1,
   },
 });

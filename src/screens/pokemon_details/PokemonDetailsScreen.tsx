@@ -20,7 +20,7 @@ const TABS = [
     title: 'Base Stats',
   },
   {
-    title: 'Evolution Chart',
+    title: 'Evolution',
   },
   {
     title: 'Generation',

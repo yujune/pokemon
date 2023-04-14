@@ -13,8 +13,8 @@ export const PokemonStatsScreen: FC = () => {
   ]);
   return (
     <View style={style.contentContainer}>
-      {data?.data.stats.map(stat => {
-        return <StatsListItem stat={stat} />;
+      {data?.data.stats.map((stat, index) => {
+        return <StatsListItem key={index.toString()} stat={stat} />;
       })}
     </View>
   );
