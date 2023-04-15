@@ -15,6 +15,7 @@ import {useGetPokemonSpecies} from '../../hooks/useGetPokemonSpecies';
 import {extractIdFromUrl} from '../../utils/general-helper';
 import {PokemonEvolutionScreen} from '../evolution/PokemonEvolutionScreen';
 import {AboutScreen} from '../about/AboutScreen';
+import {GalleryScreen} from '../gallery/GalleryScreen';
 
 const TABS = [
   {
@@ -117,7 +118,7 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
         <AboutScreen speciesId={speciesId} />
         <PokemonStatsScreen />
         <PokemonEvolutionScreen evolutionId={evolutionId} />
-        <PokemonStatsScreen />
+        <GalleryScreen />
       </TabbedHeaderPager>
     </>
   );
