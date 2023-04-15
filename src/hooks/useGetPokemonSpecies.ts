@@ -10,7 +10,8 @@ export const useGetPokemonSpecies = () => {
   };
 
   const _getPokemonSpecies = async () => {
-    return api.getPokemonSpecies(speciesId);
+    const response = await api.getPokemonSpecies(speciesId);
+    return response;
   };
 
   const query = useQuery({
@@ -20,5 +21,5 @@ export const useGetPokemonSpecies = () => {
     cacheTime: 0,
   });
 
-  return {...query, updateSpeciesId};
+  return {...query, speciesId, updateSpeciesId};
 };
