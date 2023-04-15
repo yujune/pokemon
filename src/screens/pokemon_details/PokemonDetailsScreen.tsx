@@ -14,8 +14,12 @@ import {AlertUtil} from '../../utils/alert';
 import {useGetPokemonSpecies} from '../../hooks/useGetPokemonSpecies';
 import {extractIdFromUrl} from '../../utils/general-helper';
 import {PokemonEvolutionScreen} from '../evolution/PokemonEvolutionScreen';
+import {AboutScreen} from '../about/AboutScreen';
 
 const TABS = [
+  {
+    title: 'About',
+  },
   {
     title: 'Base Stats',
   },
@@ -23,7 +27,7 @@ const TABS = [
     title: 'Evolution',
   },
   {
-    title: 'Generation',
+    title: 'Gallery',
   },
 ];
 
@@ -33,7 +37,11 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
   const [evolutionId, setEvolutionId] = useState('');
   const {data, isFetching, refetch, remove, isError, error} =
     useGetPokemonDetails(route.params.name);
-  const {data: speciesResponse, updateSpeciesId} = useGetPokemonSpecies();
+  const {
+    data: speciesResponse,
+    speciesId,
+    updateSpeciesId,
+  } = useGetPokemonSpecies();
 
   const onRefresh = async () => {
     //TO FIX: remove method will cause entire FlatList to re-render.
@@ -59,9 +67,9 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
   useEffect(() => {
     const speciesUrl = data?.data.species.url;
     if (speciesUrl != null && speciesUrl?.length > 0) {
-      const speciesId = extractIdFromUrl(speciesUrl);
-      if (speciesId != null) {
-        updateSpeciesId(speciesId);
+      const id = extractIdFromUrl(speciesUrl);
+      if (id != null) {
+        updateSpeciesId(id);
       }
     }
   }, [data?.data.species.url]);
@@ -106,6 +114,7 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
           <HeaderBar scrollValue={scrollValue} name={data?.data.name ?? ''} />
         )}
         showsVerticalScrollIndicator={false}>
+        <AboutScreen speciesId={speciesId} />
         <PokemonStatsScreen />
         <PokemonEvolutionScreen evolutionId={evolutionId} />
         <PokemonStatsScreen />
