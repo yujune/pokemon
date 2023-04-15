@@ -96,3 +96,8 @@ export const getTypeColor = (type: string) => {
       return AppColor.cloud;
   }
 };
+
+export const isSvgUrl = (url: string): boolean => {
+  const fileExtension = url.split('.').pop();
+  return fileExtension?.toLowerCase() === 'svg';
+};
