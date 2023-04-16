@@ -6,6 +6,11 @@
 <p align="center">
 <img src="./previews/app_screenshots.png"/>
 </p>
+</br>
+
+## Demo
+
+<img src="./previews/android_demo_record.gif" width="320"/>
 
 ## Download
 
