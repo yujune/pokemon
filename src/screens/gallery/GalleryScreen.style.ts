@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {AppSpacing} from '../../themes/theme';
+import {windowWidth} from '../../utils/constants';
 
 export const style = StyleSheet.create({
   flatList: {
@@ -8,5 +9,12 @@ export const style = StyleSheet.create({
   categoryTitle: {
     marginVertical: AppSpacing.small,
     fontWeight: 'bold',
+  },
+  imageListContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  imageContainer: {
+    width: windowWidth / 3.4,
   },
 });
