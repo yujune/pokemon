@@ -1,6 +1,6 @@
 <h1 align="center">Pokedex</h1>
 <p align="center">  
-🗡️ Pokedex demonstrates modern React Native development with React Query, Custom hook, Functional Component.
+🗡️ Pokedex demonstrates modern React Native development with [React Query](https://github.com/tanstack/query), Custom hook, Functional Component.
 </p>
 </br>
 <p align="center">
