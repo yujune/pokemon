@@ -6,3 +6,11 @@
 <p align="center">
 <img src="./previews/app_screenshots.png"/>
 </p>
+
+## Todos
+
+- [ ] App - Support different theme.
+- [ ] App - App icon, app name.
+- [ ] App - Splash screen.
+- [ ] Pokemon Details - Refresh feature.
+- [ ] App - Favorite Pokemon (Either use local database or remote server).
