@@ -5,6 +5,7 @@ export const style = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginVertical: AppSpacing.small,
+    alignItems: 'center',
   },
   name: {
     flex: 1.5,
@@ -14,5 +15,6 @@ export const style = StyleSheet.create({
   },
   progressBar: {
     flex: 2,
+    height: 15,
   },
 });

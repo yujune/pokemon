@@ -39,14 +39,16 @@ export const GalleryScreen: FC = () => {
             <Text style={[theme.text?.bodyMedium, style.categoryTitle]}>
               {item.name}
             </Text>
-            <FlatList
-              horizontal
-              data={item.data}
-              keyExtractor={(_, index) => index.toString()}
-              renderItem={({item: pokemon}) => (
-                <PokemonListItem name={pokemon.name} customUrl={pokemon.url} />
-              )}
-            />
+            <View style={style.imageListContainer}>
+              {item.data.map((pokemon, index) => (
+                <PokemonListItem
+                  containerStyle={style.imageContainer}
+                  key={pokemon.name + index.toString()}
+                  name={pokemon.name}
+                  customUrl={pokemon.url}
+                />
+              ))}
+            </View>
           </View>
         )}
       />

@@ -10,10 +10,12 @@ export const StatsListItem: FC<Props> = ({stat}) => {
   const {theme} = useCustomTheme();
   return (
     <View style={style.container}>
-      <Text numberOfLines={1} style={style.name}>
+      <Text numberOfLines={1} style={[theme.text?.bodyMedium, style.name]}>
         {stat?.stat.name}
       </Text>
-      <Text style={style.stat}>{stat?.base_stat}</Text>
+      <Text style={[theme.text?.bodyMedium, style.stat]}>
+        {stat?.base_stat}
+      </Text>
       {/* TODO: animation not working */}
       <Bar
         style={style.progressBar}
