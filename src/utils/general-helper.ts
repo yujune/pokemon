@@ -98,6 +98,6 @@ export const getTypeColor = (type: string) => {
 };
 
 export const isSvgUrl = (url: string): boolean => {
-  const fileExtension = url.split('.').pop();
+  const fileExtension = url?.split('.').pop();
   return fileExtension?.toLowerCase() === 'svg';
 };

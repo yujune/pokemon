@@ -5,28 +5,28 @@ import {NameWithUrl} from '../models/pokemon/species';
 export const useGallery = () => {
   const getSubImageList = (sprite: BaseSprite): NameWithUrl[] => {
     const imageList: NameWithUrl[] = [];
-    if (sprite?.front_default !== undefined) {
+    if (sprite?.front_default !== undefined && sprite?.front_default !== null) {
       imageList.push({
         url: sprite?.front_default,
         name: 'Front Default',
       });
     }
 
-    if (sprite?.front_shiny !== undefined) {
+    if (sprite?.front_shiny !== undefined && sprite?.front_shiny !== null) {
       imageList.push({
         url: sprite?.front_shiny,
         name: 'Front Shinny',
       });
     }
 
-    if (sprite?.back_default !== undefined) {
+    if (sprite?.back_default !== undefined && sprite?.back_default !== null) {
       imageList.push({
         url: sprite?.back_default,
         name: 'Back Default',
       });
     }
 
-    if (sprite?.back_shiny !== undefined) {
+    if (sprite?.back_shiny !== undefined && sprite?.back_shiny !== null) {
       imageList.push({
         url: sprite?.back_shiny,
         name: 'Back Shinny',

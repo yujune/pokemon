@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
-import {Image, Pressable, Text} from 'react-native';
+import {Pressable, Text} from 'react-native';
 import {Props} from './PokemonListItem.interface';
 import {style} from './PokemonListItem.style';
 import {getPokemonImageUrl, isSvgUrl} from '../../utils/general-helper';
 import {useCustomTheme} from '../../context/theme/theme_provider';
 import {SvgUri} from 'react-native-svg';
+import {CustomImage} from '../CustomImage/CustomImage';
 
 export const PokemonListItem: FC<Props> = ({
   name,
@@ -27,7 +28,7 @@ export const PokemonListItem: FC<Props> = ({
       {isSvgUrl(url) ? (
         <SvgUri style={style.image} width={100} height={100} uri={url} />
       ) : (
-        <Image
+        <CustomImage
           style={style.image}
           resizeMode="contain"
           source={{
