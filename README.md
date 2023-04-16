@@ -7,6 +7,10 @@
 <img src="./previews/app_screenshots.png"/>
 </p>
 
+## Download
+
+Go to the [Releases](https://github.com/yujune/pokemon/releases) to download the latest APK.
+
 ## Todos
 
 - [ ] App - Support different theme.
