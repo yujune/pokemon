@@ -2,8 +2,9 @@ import React, {FC, useState} from 'react';
 import {Image, View} from 'react-native';
 import {Props} from './CustomImage.type';
 import {LoadingImage} from '../LoadingImage/LoadingImage';
+import {POKEBALL_LOADING} from '../../assets';
 
-export const CustomImage: FC<Props> = ({...atr}) => {
+export const CustomImage: FC<Props> = ({loadingImageStyle, ...atr}) => {
   const [isLoading, setIsLoading] = useState(true);
   return (
     <View>
@@ -15,7 +16,7 @@ export const CustomImage: FC<Props> = ({...atr}) => {
         {...atr}
       />
 
-      {isLoading && <LoadingImage {...atr} />}
+      {isLoading && <LoadingImage {...atr} style={loadingImageStyle} />}
     </View>
   );
 };
