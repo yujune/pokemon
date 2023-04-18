@@ -21,6 +21,7 @@ export const APP_DEFAULT_THEME: IAppTheme = {
     progress: AppColor.deepSkyBlue,
     progressBorder: AppColor.deepSkyBlue,
     border: AppColor.seaShell,
+    inputBorder: AppColor.seaShell,
   },
 
   spacing: {
