@@ -1,8 +1,7 @@
 import {QueryFunctionContext, useInfiniteQuery} from '@tanstack/react-query';
 import {api} from '../services/api/api_service';
-import {defaultTake} from '../utils/constants';
 
-export const useGetPokemonList = () => {
+export const useGetPokemonList = ({defaultTake}: {defaultTake: number}) => {
   const getPokemonList = async ({pageParam = 0}: QueryFunctionContext) => {
     const skip = pageParam * defaultTake;
     const response = await api.getPokemonList(skip, defaultTake);

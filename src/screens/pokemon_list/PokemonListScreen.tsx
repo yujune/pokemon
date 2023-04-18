@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useLayoutEffect} from 'react';
 import {FlatList} from 'react-native';
 import {PokemonListItem} from '../../components/pokemon/PokemonListItem';
 import {LoadingIndicator} from '../../components/loading/LoadingIndicator';
@@ -8,6 +8,8 @@ import {ListEmpty} from '../../components/listEmpty/ListEmpty';
 import {useCustomTheme} from '../../context/theme/theme_provider';
 import {AlertUtil} from '../../utils/alert';
 import {Props} from './PokemonListScreen.type';
+import {defaultTake} from '../../utils/constants';
+import {PokemonListHeaderRight} from '../../components/PokemonListHeaderRight/PokemonListHeaderRight';
 
 export const PokemonListScreen: FC<Props> = ({navigation}) => {
   const {
@@ -24,7 +26,7 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
     remove,
     isError,
     error,
-  } = useGetPokemonList();
+  } = useGetPokemonList({defaultTake: defaultTake});
 
   const onRefresh = async () => {
     //TO FIX: remove method will cause entire FlatList to re-render.
@@ -41,6 +43,18 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
   const onPokemonPressed = (name: string) => {
     navigation.push('PokemonDetails', {name});
   };
+
+  const onSearchPressed = () => {
+    navigation.push('Search');
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <PokemonListHeaderRight onSearchPressed={onSearchPressed} />
+      ),
+    });
+  }, [navigation]);
 
   useEffect(() => {
     if (isError) {

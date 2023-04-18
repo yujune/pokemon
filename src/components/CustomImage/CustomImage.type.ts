@@ -1,3 +1,5 @@
-import {ImageProps} from 'react-native';
+import {ImageProps, ImageStyle, StyleProp} from 'react-native';
 
-export interface Props extends ImageProps {}
+export interface Props extends ImageProps {
+  loadingImageStyle?: StyleProp<ImageStyle>;
+}
