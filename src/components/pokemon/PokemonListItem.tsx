@@ -2,12 +2,13 @@ import React, {FC} from 'react';
 import {Pressable, Text} from 'react-native';
 import {Props} from './PokemonListItem.interface';
 import {style} from './PokemonListItem.style';
-import {getPokemonImageUrl, isSvgUrl} from '../../utils/general-helper';
+import {getPokemonImageUrlFromId, isSvgUrl} from '../../utils/general-helper';
 import {useCustomTheme} from '../../context/theme/theme_provider';
 import {SvgUri} from 'react-native-svg';
 import {CustomImage} from '../CustomImage/CustomImage';
 
 export const PokemonListItem: FC<Props> = ({
+  id,
   name,
   customUrl,
   onPressed,
@@ -17,7 +18,8 @@ export const PokemonListItem: FC<Props> = ({
     theme: {color},
   } = useCustomTheme();
 
-  const url = customUrl !== undefined ? customUrl : getPokemonImageUrl(name);
+  const url =
+    customUrl !== undefined ? customUrl : getPokemonImageUrlFromId(id);
 
   return (
     <Pressable

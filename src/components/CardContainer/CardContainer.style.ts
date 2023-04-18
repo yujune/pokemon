@@ -5,7 +5,6 @@ import {AppColor} from '../../utils/color';
 export const style = StyleSheet.create({
   container: {
     borderRadius: 15,
-    backgroundColor: AppColor.white,
     padding: AppSpacing.standard,
     shadowColor: AppColor.black,
     shadowOffset: {

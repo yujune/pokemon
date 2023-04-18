@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
 import {useGetPokemonList} from '../../hooks/useGetPokemonList';
 import {maxTake} from '../../utils/constants';
 import {AlertUtil} from '../../utils/alert';
@@ -13,9 +13,11 @@ import {SearchHeader} from '../../components/SearchHeader/SearchHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSearch} from '../../hooks/useSearch';
 import {Pokemon} from '../../models/pokemon/pokemon';
+import {extractIdFromUrl} from '../../utils/general-helper';
 
 export const SearchScreen: FC<Props> = ({navigation}) => {
   const {theme} = useCustomTheme();
+  const flatListRef = useRef<FlatList<Pokemon | undefined>>(null);
   const {filterPokemonWithName} = useSearch();
   const [search, setSearch] = useState<string | null>(null);
   const [filterResult, setFilterResult] = useState<(Pokemon | undefined)[]>([]);
@@ -61,6 +63,7 @@ export const SearchScreen: FC<Props> = ({navigation}) => {
       return;
     }
     const searchTimeout = setTimeout(() => {
+      flatListRef.current?.scrollToOffset({animated: true, offset: 0});
       updateFilterList();
     }, 500);
 
@@ -78,8 +81,10 @@ export const SearchScreen: FC<Props> = ({navigation}) => {
   }
 
   return (
-    <SafeAreaView style={style.container}>
+    <SafeAreaView
+      style={[style.container, {backgroundColor: theme.color.background}]}>
       <FlatList
+        ref={flatListRef}
         bounces={false}
         style={[style.container, {backgroundColor: theme.color.background}]}
         onRefresh={onRefresh}
@@ -93,8 +98,10 @@ export const SearchScreen: FC<Props> = ({navigation}) => {
             updateSearch={updateSearch}
           />
         }
+        stickyHeaderIndices={[0]}
         renderItem={({item}) => (
           <SearchListItem
+            id={extractIdFromUrl(item?.url) ?? ''}
             name={item?.name ?? ''}
             onSearchItemPressed={onSearchItemPressed}
           />

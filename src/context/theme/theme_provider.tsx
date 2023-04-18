@@ -1,6 +1,6 @@
 import React, {FC, createContext, useContext, useState} from 'react';
 import {IThemProvider, IThemeContext} from './them_provider.interface';
-import {APP_DEFAULT_THEME} from '../../themes/theme';
+import {APP_DARK_THEME, APP_DEFAULT_THEME} from '../../themes/theme';
 import {ThemeType} from '../../themes/theme.interface';
 
 export const ThemeContext = createContext<IThemeContext>({
@@ -19,7 +19,11 @@ export const ThemeProvider: FC<IThemProvider> = ({children}) => {
   };
 
   return (
-    <ThemeContext.Provider value={{theme: APP_DEFAULT_THEME, toggleTheme}}>
+    <ThemeContext.Provider
+      value={{
+        theme: themeType === 'light' ? APP_DEFAULT_THEME : APP_DARK_THEME,
+        toggleTheme,
+      }}>
       {children}
     </ThemeContext.Provider>
   );

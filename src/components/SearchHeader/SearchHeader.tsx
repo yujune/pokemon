@@ -14,7 +14,12 @@ export const SearchHeader: FC<Props> = ({
   const {theme} = useCustomTheme();
   return (
     <View style={[style.container, {backgroundColor: theme.color.background}]}>
-      <Icon name="arrow-back-outline" size={25} onPress={onBackButtonPressed} />
+      <Icon
+        name="arrow-back-outline"
+        size={25}
+        onPress={onBackButtonPressed}
+        color={theme.color.icon}
+      />
       <SearchBar
         autoFocus
         enablesReturnKeyAutomatically={false}
@@ -27,10 +32,13 @@ export const SearchHeader: FC<Props> = ({
             borderBottomColor: theme.color.inputBorder,
           },
         ]}
-        inputContainerStyle={{
-          backgroundColor: theme.color.background,
-        }}
-        searchIcon={<Icon name="search" size={20} />}
+        inputContainerStyle={[
+          style.inputContainer,
+          {
+            backgroundColor: theme.color.background,
+          },
+        ]}
+        searchIcon={<Icon name="search" size={20} color={theme.color.icon} />}
         leftIconContainerStyle={{backgroundColor: theme.color.background}}
         style={{backgroundColor: theme.color.background}}
         placeholder="Bulbasaur"

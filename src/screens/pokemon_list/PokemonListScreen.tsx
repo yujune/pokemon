@@ -10,6 +10,7 @@ import {AlertUtil} from '../../utils/alert';
 import {Props} from './PokemonListScreen.type';
 import {defaultTake} from '../../utils/constants';
 import {PokemonListHeaderRight} from '../../components/PokemonListHeaderRight/PokemonListHeaderRight';
+import {extractIdFromUrl} from '../../utils/general-helper';
 
 export const PokemonListScreen: FC<Props> = ({navigation}) => {
   const {
@@ -48,10 +49,17 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
     navigation.push('Search');
   };
 
+  const onSettingsPressed = () => {
+    navigation.push('Settings');
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <PokemonListHeaderRight onSearchPressed={onSearchPressed} />
+        <PokemonListHeaderRight
+          onSearchPressed={onSearchPressed}
+          onSettingPressed={onSettingsPressed}
+        />
       ),
     });
   }, [navigation]);
@@ -80,6 +88,7 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
       }
       renderItem={({item}) => (
         <PokemonListItem
+          id={extractIdFromUrl(item?.url) ?? ''}
           name={item?.name ?? '-'}
           onPressed={onPokemonPressed}
         />

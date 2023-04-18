@@ -9,6 +9,7 @@ import {Pokedex} from '../../models/pokemon/pokedex';
 import {useQueryClient} from '@tanstack/react-query';
 import {Category} from '../../models/pokemon/category';
 import {useCustomTheme} from '../../context/theme/theme_provider';
+import {extractIdFromUrl} from '../../utils/general-helper';
 
 export const GalleryScreen: FC = () => {
   const {theme} = useCustomTheme();
@@ -45,6 +46,7 @@ export const GalleryScreen: FC = () => {
                   containerStyle={style.imageContainer}
                   key={pokemon.name + index.toString()}
                   name={pokemon.name}
+                  id={extractIdFromUrl(pokemon.url) ?? ''}
                   customUrl={pokemon.url}
                 />
               ))}

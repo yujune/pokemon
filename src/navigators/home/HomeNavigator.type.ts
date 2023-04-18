@@ -4,4 +4,5 @@ export type HomeStackParamList = {
     name: string;
   };
   Search: undefined;
+  Settings: undefined;
 };

@@ -15,4 +15,7 @@ export const style = StyleSheet.create({
     marginVertical: AppSpacing.small,
     paddingVertical: 2,
   },
+  inputContainer: {
+    borderRadius: 30,
+  },
 });

@@ -20,4 +20,8 @@ export class AppColor {
   static lavenderPurple = '#9473B4';
   static columbiaBlue = '#A4DEF6';
   static cloud = '#C5C5C5';
+  static boulder = '#767577';
+  static denimBlue = '#81b0ff';
+  static haze = '#f4f3f4';
+  static iridium = '#3e3e3e';
 }
