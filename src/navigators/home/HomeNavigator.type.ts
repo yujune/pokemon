@@ -3,4 +3,5 @@ export type HomeStackParamList = {
   PokemonDetails: {
     name: string;
   };
+  Search: undefined;
 };
