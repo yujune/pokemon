@@ -3,10 +3,15 @@
 ⚔️ Pokedex demonstrates modern React Native development with  <a href="https://github.com/tanstack/query">React Query</a>, Custom hook, Functional Component.
 </p>
 </br>
+<h2>Light Theme</h2>
 <p align="center">
 <img src="./previews/app_screenshots.png"/>
 </p>
 </br>
+<h2>Dark Theme</h2>
+<p align="center">
+<img src="./previews/app_screenshots_dark.png"/>
+</p>
 
 ## Demo
 
