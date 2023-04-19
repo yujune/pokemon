@@ -21,6 +21,8 @@ export interface IAppTheme {
     progress?: ColorValue;
     progressBorder?: ColorValue;
     border?: ColorValue;
+    shadow?: ColorValue;
+    icon?: ColorValue;
   };
   spacing: {
     small: number;

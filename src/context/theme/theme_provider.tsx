@@ -1,7 +1,8 @@
-import React, {FC, createContext, useContext, useState} from 'react';
+import React, {FC, createContext, useContext, useEffect, useState} from 'react';
 import {IThemProvider, IThemeContext} from './them_provider.interface';
-import {APP_DEFAULT_THEME} from '../../themes/theme';
+import {APP_DARK_THEME, APP_DEFAULT_THEME} from '../../themes/theme';
 import {ThemeType} from '../../themes/theme.interface';
+import {AsyncStorageHelper} from '../../utils/async-storage-helper';
 
 export const ThemeContext = createContext<IThemeContext>({
   theme: APP_DEFAULT_THEME,
@@ -15,11 +16,25 @@ export const ThemeProvider: FC<IThemProvider> = ({children}) => {
     if (themeType === type) {
       return;
     }
-    setThemeType(type);
+    AsyncStorageHelper.setTheme(type).then(() => {
+      setThemeType(type);
+    });
   };
 
+  useEffect(() => {
+    AsyncStorageHelper.getTheme().then(theme => {
+      if (theme !== null && theme.length > 0) {
+        setThemeType(theme as ThemeType);
+      }
+    });
+  }, []);
+
   return (
-    <ThemeContext.Provider value={{theme: APP_DEFAULT_THEME, toggleTheme}}>
+    <ThemeContext.Provider
+      value={{
+        theme: themeType === 'light' ? APP_DEFAULT_THEME : APP_DARK_THEME,
+        toggleTheme,
+      }}>
       {children}
     </ThemeContext.Provider>
   );

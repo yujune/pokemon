@@ -106,7 +106,11 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
         tabTextContainerStyle={style.tabTextContainerStyle}
         tabTextContainerActiveStyle={{backgroundColor: theme.color.tabActive}}
         tabTextStyle={[style.tabText, theme.text?.bodyMedium]}
-        tabTextActiveStyle={[style.tabTextActiveStyle, theme.text?.bodyMedium]}
+        tabTextActiveStyle={[
+          style.tabTextActiveStyle,
+          theme.text?.bodyMedium,
+          {color: theme.color.tabLabelActive},
+        ]}
         tabWrapperStyle={style.tabWrapperStyle}
         tabsContainerStyle={style.tabsContainerStyle}
         onScroll={onScroll}

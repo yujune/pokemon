@@ -7,6 +7,10 @@ export const getPokemonImageUrl = (name: string) => {
   return `${pokemonImgBaseUrl}${imageName}.jpg`;
 };
 
+export const getPokemonImageUrlFromId = (id: string) => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+};
+
 export const extractIdFromUrl = (url?: string): string | null => {
   const match = url?.match(/\/(\d+)\/$/);
   if (match && match.length > 1) {

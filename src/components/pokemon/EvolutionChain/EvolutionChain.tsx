@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
-import {Image, Text, View} from 'react-native';
-import {FAST_FORWARD_ICON} from '../../../assets';
+import {Text, View} from 'react-native';
 import {PokemonListItem} from '../PokemonListItem';
 import {Props} from './EvolutionChain.type';
 import {style} from './EvolutionChain.style';
 import {useCustomTheme} from '../../../context/theme/theme_provider';
+import {extractIdFromUrl} from '../../../utils/general-helper';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 export const EvolutionChain: FC<Props> = ({chain}) => {
   const {theme} = useCustomTheme();
@@ -15,9 +16,14 @@ export const EvolutionChain: FC<Props> = ({chain}) => {
         key={chain[0].species.name}
         containerStyle={style.evolutionItem}
         name={chain[0].species.name ?? ''}
+        id={extractIdFromUrl(chain[0].species.url) ?? ''}
       />
-      <View style={style.fastForwardIcon}>
-        <Image source={FAST_FORWARD_ICON} />
+      <View style={style.fastForwardContainer}>
+        <Icon
+          style={[style.fastForwardIcon, {color: theme.color.icon}]}
+          name="forward"
+          size={20}
+        />
         {minLevel && (
           <Text style={theme.text?.bodySmall}>{`Level ${minLevel}`}</Text>
         )}
@@ -26,6 +32,7 @@ export const EvolutionChain: FC<Props> = ({chain}) => {
         key={chain[1].species.name}
         containerStyle={style.evolutionItem}
         name={chain[1].species.name ?? ''}
+        id={extractIdFromUrl(chain[1].species.url) ?? ''}
       />
     </View>
   );

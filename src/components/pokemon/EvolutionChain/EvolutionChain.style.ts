@@ -12,9 +12,12 @@ export const style = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: AppSpacing.standard,
   },
-  fastForwardIcon: {
+  fastForwardContainer: {
     alignSelf: 'center',
     alignItems: 'center',
     flex: 1,
+  },
+  fastForwardIcon: {
+    marginBottom: AppSpacing.small,
   },
 });
