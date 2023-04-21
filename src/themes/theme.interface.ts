@@ -23,6 +23,7 @@ export interface IAppTheme {
     border?: ColorValue;
     shadow?: ColorValue;
     icon?: ColorValue;
+    refreshControl?: ColorValue;
   };
   spacing: {
     small: number;

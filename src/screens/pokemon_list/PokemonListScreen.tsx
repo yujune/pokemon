@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useLayoutEffect} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, RefreshControl} from 'react-native';
 import {PokemonListItem} from '../../components/pokemon/PokemonListItem';
 import {LoadingIndicator} from '../../components/loading/LoadingIndicator';
 import {style} from './PokemonListScreen.style';
@@ -78,6 +78,13 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
     <FlatList
       style={[style.container, {backgroundColor: color.background}]}
       numColumns={3}
+      refreshControl={
+        <RefreshControl
+          onRefresh={onRefresh}
+          refreshing={isRefetching}
+          tintColor={color.refreshControl}
+        />
+      }
       onRefresh={onRefresh}
       refreshing={isRefetching}
       data={data?.pages.flatMap(page => page?.data.results)}
