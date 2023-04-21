@@ -25,6 +25,7 @@ export const APP_DEFAULT_THEME: IAppTheme = {
     inputBorder: AppColor.seaShell,
     shadow: AppColor.black,
     icon: AppColor.dawn,
+    refreshControl: AppColor.cloud,
   },
 
   spacing: {
@@ -94,6 +95,7 @@ export const APP_DARK_THEME: IAppTheme = {
     inputBorder: AppColor.seaShell,
     shadow: AppColor.white,
     icon: AppColor.white,
+    refreshControl: AppColor.white,
   },
 
   spacing: {
