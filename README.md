@@ -24,8 +24,8 @@ Go to the [Releases](https://github.com/yujune/pokemon/releases) to download the
 ## Todos
 
 - [x] App - Support different theme.
-- [ ] App - App icon, app name.
-- [ ] App - Splash screen.
+- [x] App - App icon, app name.
+- [x] App - Splash screen.
 - [ ] Pokemon Details - Refresh feature.
 - [ ] App - Favorite Pokemon (Either use local database or remote server).
 - [ ] App - Unit Test, Component Test, Integration Test.
