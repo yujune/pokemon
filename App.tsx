@@ -43,4 +43,10 @@ function App(): JSX.Element {
     </Provider>
   );
 }
-export default App;
+
+let AppEntryPoint = App;
+
+//Uncomment this line to showcase storybook.
+AppEntryPoint = require('./.storybook').default;
+
+export default AppEntryPoint;
