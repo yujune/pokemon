@@ -29,3 +29,4 @@ Go to the [Releases](https://github.com/yujune/pokemon/releases) to download the
 - [ ] Pokemon Details - Refresh feature.
 - [ ] App - Favorite Pokemon (Either use local database or remote server).
 - [ ] App - Unit Test, Component Test, Integration Test.
+- [ ] App - Comprehensive Ui documentation (Storybook).
