@@ -1,4 +1,8 @@
-import {getPokemonImageUrl} from '../src/utils/general-helper';
+import {
+  extractIdFromUrl,
+  getPokemonImageUrl,
+  isSvgUrl,
+} from '../src/utils/general-helper';
 
 describe('getPokemonImageUrl', () => {
   it('should return the correct image URL', () => {
@@ -21,5 +25,30 @@ describe('getPokemonImageUrl', () => {
       'https://img.pokemondb.net/artwork/large/mew-two-first-generation.jpg';
     const imageUrl = getPokemonImageUrl(name);
     expect(imageUrl).toBe(expectedUrl);
+  });
+});
+
+describe('extractIdFromUrl', () => {
+  it('should extract id from the url', () => {
+    const url = 'https://img.pokemondb.net/artwork/large/1/';
+    const expectedId = '1';
+    const extractedId = extractIdFromUrl(url);
+    expect(extractedId).toBe(expectedId);
+  });
+});
+
+describe('isSvgUrl', () => {
+  it('should return true for svg url', () => {
+    const url =
+      'https://img.pokemondb.net/artwork/large/mew-two-first-generation.svg';
+    const isSvg = isSvgUrl(url);
+    expect(isSvg).toBeTruthy();
+  });
+
+  it('should return false for png url', () => {
+    const url =
+      'https://img.pokemondb.net/artwork/large/mew-two-first-generation.png';
+    const isSvg = isSvgUrl(url);
+    expect(isSvg).toBeFalsy();
   });
 });
