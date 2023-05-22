@@ -49,7 +49,10 @@ try {
 
 const getStories = () => {
   return {
+    "./.storybook/stories/CardContainer/CardContainer.stories.tsx": require("./stories/CardContainer/CardContainer.stories.tsx"),
+    "./.storybook/stories/CustomImage/CustomImage.stories.tsx": require("./stories/CustomImage/CustomImage.stories.tsx"),
     "./.storybook/stories/InfoItem/InfoItem.stories.tsx": require("./stories/InfoItem/InfoItem.stories.tsx"),
+    "./.storybook/stories/LoadingImage/LoadingImage.stories.tsx": require("./stories/LoadingImage/LoadingImage.stories.tsx"),
     "./.storybook/stories/LoadingIndicator/LoadingIndicator.stories.tsx": require("./stories/LoadingIndicator/LoadingIndicator.stories.tsx"),
     "./.storybook/stories/PokemonListItem/PokemonListItem.stories.tsx": require("./stories/PokemonListItem/PokemonListItem.stories.tsx"),
     "./.storybook/stories/TagItem/TagItem.stories.tsx": require("./stories/TagItem/TagItem.stories.tsx"),
