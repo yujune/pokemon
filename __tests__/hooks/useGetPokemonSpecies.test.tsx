@@ -12,7 +12,20 @@ import {Species} from '../../src/models/pokemon/species';
 import {api} from '../../src/services/api/api_service';
 
 describe('useGetPokemonSpecies', () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        //To fix "Jest did not exit one second after the test run has completed." error.
+        //Reference: https://github.com/TanStack/query/issues/1847#issuecomment-1325196926
+        cacheTime: 0,
+        retry: false,
+      },
+      mutations: {
+        cacheTime: 0,
+        retry: false,
+      },
+    },
+  });
   let wrapper:
     | WrapperComponent<{
         children: any;
@@ -55,20 +68,20 @@ describe('useGetPokemonSpecies', () => {
     expect(result.current.data?.data).toBe(species);
   });
 
-  // it('should return an error if api.getPokemonSpecies fails', async () => {
-  //   const speciesId = 'pikachu';
-  //   const expectedError = new Error('Failed to get pokemon species');
-  //   apiMock.mockRejectedValue(expectedError);
+  it('should return an error if api.getPokemonSpecies fails', async () => {
+    const speciesId = 'pikachu';
+    const expectedError = new Error('Failed to get pokemon species');
+    apiMock.mockRejectedValue(expectedError);
 
-  //   const {result, waitFor} = renderHook(() => useGetPokemonSpecies(), {
-  //     wrapper,
-  //   });
-  //   act(() => {
-  //     result.current.updateSpeciesId(speciesId);
-  //   });
+    const {result, waitFor} = renderHook(() => useGetPokemonSpecies(), {
+      wrapper,
+    });
+    act(() => {
+      result.current.updateSpeciesId(speciesId);
+    });
 
-  //   await waitFor(() => result.current.isError);
+    await waitFor(() => result.current.isError);
 
-  //   expect(result.current.error).toEqual(expectedError);
-  // });
+    expect(result.current.error).toEqual(expectedError);
+  });
 });

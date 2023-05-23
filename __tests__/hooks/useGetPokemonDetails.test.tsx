@@ -14,7 +14,20 @@ jest.mock('../../src/services/api/api_service', () => ({
 }));
 
 describe('useGetPokemonDetails', () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        //To fix "Jest did not exit one second after the test run has completed." error.
+        //Reference: https://github.com/TanStack/query/issues/1847#issuecomment-1325196926
+        cacheTime: 0,
+        retry: false,
+      },
+      mutations: {
+        cacheTime: 0,
+        retry: false,
+      },
+    },
+  });
   let wrapper:
     | WrapperComponent<{
         children: any;
@@ -57,33 +70,31 @@ describe('useGetPokemonDetails', () => {
     expect(result.current.data?.data).toEqual(pokemonDetails);
   });
 
-  //! Below unit test getting "Timed out in waitFor after 1000ms.",
-  //! suspect result.current.isError is always false which cause the problem.
-  // it('should return error when fetching Pokemon details fails', async () => {
-  //   const response: AxiosError = {
-  //     status: 400,
-  //     message: 'Failed to fetch Pokemon details',
-  //     isAxiosError: false,
-  //     toJSON: function (): object {
-  //       return {};
-  //     },
-  //     name: '',
-  //   };
+  it('should return error when fetching Pokemon details fails', async () => {
+    const response: AxiosError = {
+      status: 400,
+      message: 'Failed to fetch Pokemon details',
+      isAxiosError: false,
+      toJSON: function (): object {
+        return {};
+      },
+      name: '',
+    };
 
-  //   (
-  //     api.getPokemonDetails as jest.MockedFunction<typeof api.getPokemonDetails>
-  //   ).mockRejectedValue(response);
+    (
+      api.getPokemonDetails as jest.MockedFunction<typeof api.getPokemonDetails>
+    ).mockRejectedValue(response);
 
-  //   const {result, waitFor} = renderHook(
-  //     () => useGetPokemonDetails('bulbasaur'),
-  //     {
-  //       wrapper,
-  //     },
-  //   );
+    const {result, waitFor} = renderHook(
+      () => useGetPokemonDetails('bulbasaur'),
+      {
+        wrapper,
+      },
+    );
 
-  //   expect(result.current.isLoading).toBe(true);
-  //   await waitFor(() => result.current.isError);
-  //   console.log('result.current.error', result.current.error);
-  //   expect(result.current.error).toEqual(response);
-  // });
+    expect(result.current.isLoading).toBe(true);
+    await waitFor(() => result.current.isError);
+    console.log('result.current.error', result.current.error);
+    expect(result.current.error).toEqual(response);
+  });
 });
