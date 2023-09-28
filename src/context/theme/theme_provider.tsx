@@ -10,7 +10,7 @@ export const ThemeContext = createContext<IThemeContext>({
 });
 
 export const ThemeProvider: FC<IThemProvider> = ({children}) => {
-  const [themeType, setThemeType] = useState<ThemeType>('light');
+  const [themeType, setThemeType] = useState<ThemeType>('dark');
 
   const toggleTheme = (type: ThemeType) => {
     if (themeType === type) {

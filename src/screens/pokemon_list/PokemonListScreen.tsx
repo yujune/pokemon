@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useLayoutEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {FlatList, RefreshControl} from 'react-native';
 import {PokemonListItem} from '../../components/pokemon/PokemonListItem';
 import {LoadingIndicator} from '../../components/loading/LoadingIndicator';
@@ -9,7 +9,6 @@ import {useCustomTheme} from '../../context/theme/theme_provider';
 import {AlertUtil} from '../../utils/alert';
 import {Props} from './PokemonListScreen.type';
 import {defaultTake} from '../../utils/constants';
-import {PokemonListHeaderRight} from '../../components/PokemonListHeaderRight/PokemonListHeaderRight';
 import {extractIdFromUrl} from '../../utils/general-helper';
 
 export const PokemonListScreen: FC<Props> = ({navigation}) => {
@@ -18,8 +17,8 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
   } = useCustomTheme();
   const {
     data,
-    isLoading,
-    isRefetching,
+    isInitialLoading,
+    isFetching,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
@@ -31,7 +30,7 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
 
   const onRefresh = async () => {
     //TO FIX: remove method will cause entire FlatList to re-render.
-    remove();
+    // remove();
     await refetch();
   };
 
@@ -45,32 +44,14 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
     navigation.push('PokemonDetails', {name});
   };
 
-  const onSearchPressed = () => {
-    navigation.push('Search');
-  };
-
-  const onSettingsPressed = () => {
-    navigation.push('Settings');
-  };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <PokemonListHeaderRight
-          onSearchPressed={onSearchPressed}
-          onSettingPressed={onSettingsPressed}
-        />
-      ),
-    });
-  }, [navigation]);
-
   useEffect(() => {
     if (isError) {
       AlertUtil.showErrorAlert(error);
     }
   }, [isError, error]);
 
-  if (isLoading) {
+  if (isInitialLoading) {
+    console.log(isInitialLoading);
     return <LoadingIndicator />;
   }
 
@@ -81,17 +62,17 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
       refreshControl={
         <RefreshControl
           onRefresh={onRefresh}
-          refreshing={isRefetching}
+          refreshing={isFetching}
           tintColor={color.refreshControl}
         />
       }
-      onRefresh={onRefresh}
-      refreshing={isRefetching}
       data={data?.pages.flatMap(page => page?.data.results)}
       onEndReached={onEndReached}
       ListEmptyComponent={<ListEmpty />}
       ListFooterComponent={
-        isFetchingNextPage ? <LoadingIndicator size="small" /> : null
+        isFetchingNextPage ? (
+          <LoadingIndicator size="small" loadingType="loadMore" />
+        ) : null
       }
       renderItem={({item}) => (
         <PokemonListItem

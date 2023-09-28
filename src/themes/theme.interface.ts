@@ -25,18 +25,6 @@ export interface IAppTheme {
     icon?: ColorValue;
     refreshControl?: ColorValue;
   };
-  spacing: {
-    small: number;
-    medium: number;
-    large: number;
-  };
-
-  fontSize: {
-    small: number;
-    medium: number;
-    large: number;
-    xlarge: number;
-  };
 
   fontStyle: {
     regular: AppFont;

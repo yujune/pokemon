@@ -24,7 +24,7 @@ export const EvolutionChain: FC<Props> = ({chain}) => {
           name="forward"
           size={20}
         />
-        {minLevel && (
+        {!!minLevel && (
           <Text style={theme.text?.bodySmall}>{`Level ${minLevel}`}</Text>
         )}
       </View>

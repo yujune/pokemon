@@ -5,6 +5,7 @@ export class AppColor {
   static pattensBlue = '#E2F4FD';
   static deepSkyBlue = '#007AFF';
   static seaShell = '#f0f0f0';
+  static red = 'red';
   static orangeRed = '#F7786B';
   static cyanBlue = '#77C4FE';
   static mutedPurple = '#7C538C';

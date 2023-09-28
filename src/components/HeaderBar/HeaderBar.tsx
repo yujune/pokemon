@@ -1,33 +1,45 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {FC} from 'react';
-import {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import React, {FC, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Animated, Image, Pressable, View} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import {style} from './HeaderBar.style';
 import {Props} from './HeaderBar.type';
 import {useCustomTheme} from '../../context/theme/theme_provider';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {useFavorite} from '../../hooks/useFavorite';
+import {useAuth} from '../../context/auth/auth_provider';
+import {LoadingIndicator} from '../loading/LoadingIndicator';
 
-export const HeaderBar: FC<Props> = ({scrollValue, name}) => {
+export const HeaderBar: FC<Props> = ({
+  title,
+  pokemonName,
+  pokemonId,
+  types,
+}) => {
   const {theme} = useCustomTheme();
+  const {isLoggedIn} = useAuth();
   const navigation = useNavigation();
+  const {isFavoriteQuery, addToFavoriteMutation, deleteFavoriteMutation} =
+    useFavorite(pokemonId, pokemonName, types);
   const goBack = React.useCallback(() => {
     navigation.goBack();
   }, [navigation]);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: interpolate(
-        scrollValue.value,
-        [0, 60, 90],
-        [0, 0, 1],
-        Extrapolate.CLAMP,
-      ),
-    };
-  });
+  const isFavorite = isFavoriteQuery.data?.data;
+
+  const onFavoritePressed = () => {
+    if (isFavorite) {
+      deleteFavoriteMutation.mutate();
+    } else {
+      addToFavoriteMutation.mutate();
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      isFavoriteQuery.refetch();
+    }
+  }, []);
 
   return (
     <SafeAreaView
@@ -46,18 +58,26 @@ export const HeaderBar: FC<Props> = ({scrollValue, name}) => {
             }}
           />
         </Pressable>
-        <Animated.View style={animatedStyle}>
-          <Animated.Text
-            style={[
-              style.headerText,
-              animatedStyle,
-              {color: theme.color.text},
-              theme.text?.headerMedium,
-            ]}>
-            {name}
-          </Animated.Text>
-        </Animated.View>
+        <Text
+          style={[
+            style.headerText,
+            {color: theme.color.text},
+            theme.text?.headerMedium,
+          ]}>
+          {title}
+        </Text>
+
+        {isLoggedIn && (
+          <Icon
+            style={{color: isFavorite ? theme.color.primary : theme.color.icon}}
+            name="heart"
+            size={20}
+            onPress={onFavoritePressed}
+          />
+        )}
       </View>
+      {(addToFavoriteMutation.isLoading ||
+        deleteFavoriteMutation.isLoading) && <LoadingIndicator />}
     </SafeAreaView>
   );
 };

@@ -22,5 +22,6 @@ export const style = StyleSheet.create({
   },
   headerText: {
     paddingLeft: AppSpacing.standard,
+    flex: 1,
   },
 });

@@ -16,6 +16,7 @@ import {extractIdFromUrl} from '../../utils/general-helper';
 import {PokemonEvolutionScreen} from '../evolution/PokemonEvolutionScreen';
 import {AboutScreen} from '../about/AboutScreen';
 import {GalleryScreen} from '../gallery/GalleryScreen';
+import {ScreenContainer} from '../../components/ScreenContainer/ScreenContainer';
 
 const TABS = [
   {
@@ -82,7 +83,11 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
   }, [isError, error]);
 
   if (isFetching) {
-    return <LoadingIndicator />;
+    return (
+      <ScreenContainer>
+        <LoadingIndicator />
+      </ScreenContainer>
+    );
   }
 
   return (
@@ -116,7 +121,13 @@ export const PokemonDetailsScreen: FC<Props> = ({route}) => {
         onScroll={onScroll}
         tabs={TABS}
         renderHeaderBar={() => (
-          <HeaderBar scrollValue={scrollValue} name={data?.data.name ?? ''} />
+          <HeaderBar
+            scrollValue={scrollValue}
+            title={data?.data.name ?? ''}
+            pokemonId={data?.data.id.toString() ?? ''}
+            pokemonName={route.params.name}
+            types={data?.data?.types.map(item => item.type.name) ?? []}
+          />
         )}
         showsVerticalScrollIndicator={false}>
         <AboutScreen speciesId={speciesId} />

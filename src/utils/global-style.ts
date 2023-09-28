@@ -7,4 +7,11 @@ export const AppStyle = StyleSheet.create({
     paddingHorizontal: AppSpacing.standard,
     paddingVertical: AppSpacing.mediumSmall,
   },
+  fill: {
+    flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
+    flex: 1,
+  },
 });

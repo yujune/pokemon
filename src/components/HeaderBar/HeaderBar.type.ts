@@ -2,5 +2,8 @@ import {SharedValue} from 'react-native-reanimated';
 
 export type Props = {
   scrollValue: SharedValue<number>;
-  name: string;
+  title: string;
+  pokemonName: string;
+  pokemonId: string;
+  types: string[];
 };

@@ -10,11 +10,18 @@ export class AppSpacing {
   static large = 25;
 }
 
+export class AppFontSize {
+  static small = 12;
+  static medium = 14;
+  static large = 16;
+  static xlarge = 22;
+}
+
 export const APP_DEFAULT_THEME: IAppTheme = {
   name: 'light',
   color: {
     text: AppColor.black,
-    primary: AppColor.white,
+    primary: AppColor.deepSkyBlue,
     background: AppColor.white,
     tabActive: AppColor.pattensBlue,
     tabInActive: AppColor.white,
@@ -27,20 +34,6 @@ export const APP_DEFAULT_THEME: IAppTheme = {
     icon: AppColor.dawn,
     refreshControl: AppColor.cloud,
   },
-
-  spacing: {
-    small: 5,
-    medium: 15,
-    large: 25,
-  },
-
-  fontSize: {
-    small: 12,
-    medium: 14,
-    large: 16,
-    xlarge: 22,
-  },
-
   fontStyle: {
     regular: AppFont.PublicSans_Regular,
     bold: AppFont.PublicSans_Bold,
@@ -84,7 +77,7 @@ export const APP_DARK_THEME: IAppTheme = {
   name: 'dark',
   color: {
     text: AppColor.white,
-    primary: AppColor.black,
+    primary: AppColor.deepSkyBlue,
     background: AppColor.black,
     tabActive: AppColor.pattensBlue,
     tabInActive: AppColor.white,
@@ -97,20 +90,6 @@ export const APP_DARK_THEME: IAppTheme = {
     icon: AppColor.white,
     refreshControl: AppColor.white,
   },
-
-  spacing: {
-    small: 5,
-    medium: 15,
-    large: 25,
-  },
-
-  fontSize: {
-    small: 12,
-    medium: 14,
-    large: 16,
-    xlarge: 22,
-  },
-
   fontStyle: {
     regular: AppFont.PublicSans_Regular,
     bold: AppFont.PublicSans_Bold,

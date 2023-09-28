@@ -16,6 +16,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import {AuthProvider} from './src/context/auth/auth_provider';
 
 const queryClient = new QueryClient();
 export const queryCache = new QueryCache({
@@ -34,11 +35,13 @@ function App(): JSX.Element {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <NavigationContainer>
-            <HomeNavigator />
-          </NavigationContainer>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <NavigationContainer>
+              <HomeNavigator />
+            </NavigationContainer>
+          </ThemeProvider>
+        </AuthProvider>
       </QueryClientProvider>
     </Provider>
   );

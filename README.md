@@ -27,7 +27,9 @@ Go to the [Releases](https://github.com/yujune/pokemon/releases) to download the
 - [x] App - App icon, app name.
 - [x] App - Splash screen.
 - [ ] Pokemon Details - Refresh feature.
-- [ ] App - Favorite Pokemon (Either use local database or remote server).
+- [x] App - Favorite Pokemon (Either use local database or remote server).
 - [ ] App - Unit Test, Component Test, Integration Test.
 - [ ] App - Comprehensive Ui documentation (Storybook).
 - [ ] App - CICD
+- [ ] Watchlist - Add swipe to delete, reorderable.
+- [ ] App - Add logging.
