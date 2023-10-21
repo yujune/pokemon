@@ -24,6 +24,12 @@ export const WatchListScreen: FC<Props> = ({navigation}) => {
     navigation.push('PokemonDetails', {name});
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      refetch();
+    }
+  }, [isLoggedIn]);
+
   if (!isLoggedIn)
     return (
       <ScreenContainer>

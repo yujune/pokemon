@@ -7,6 +7,7 @@ export const useFavoriteList = () => {
   const favoriteListQuery = useQuery({
     queryKey: ['favoriteList'],
     queryFn: _getFavoriteList,
+    enabled: false,
   });
 
   return {...favoriteListQuery};
