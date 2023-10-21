@@ -10,6 +10,7 @@ import {AlertUtil} from '../../utils/alert';
 import {Props} from './PokemonListScreen.type';
 import {defaultTake} from '../../utils/constants';
 import {extractIdFromUrl} from '../../utils/general-helper';
+import {ScreenContainer} from '../../components/ScreenContainer/ScreenContainer';
 
 export const PokemonListScreen: FC<Props> = ({navigation}) => {
   const {
@@ -52,7 +53,11 @@ export const PokemonListScreen: FC<Props> = ({navigation}) => {
 
   if (isInitialLoading) {
     console.log(isInitialLoading);
-    return <LoadingIndicator />;
+    return (
+      <ScreenContainer>
+        <LoadingIndicator />
+      </ScreenContainer>
+    );
   }
 
   return (

@@ -76,37 +76,37 @@ export const SearchScreen: FC<Props> = ({navigation}) => {
     }
   }, [isError, error]);
 
-  if (isLoading || isRefetching) {
-    return <LoadingIndicator />;
-  }
-
   return (
     <SafeAreaView
       style={[style.container, {backgroundColor: theme.color.background}]}>
-      <FlatList
-        ref={flatListRef}
-        bounces={false}
-        style={[style.container, {backgroundColor: theme.color.background}]}
-        onRefresh={onRefresh}
-        refreshing={isRefetching}
-        data={filterResult}
-        ListEmptyComponent={<ListEmpty />}
-        ListHeaderComponent={
-          <SearchHeader
-            onBackButtonPressed={onBackButtonPressed}
-            search={search ?? ''}
-            updateSearch={updateSearch}
-          />
-        }
-        stickyHeaderIndices={[0]}
-        renderItem={({item}) => (
-          <SearchListItem
-            id={extractIdFromUrl(item?.url) ?? ''}
-            name={item?.name ?? ''}
-            onSearchItemPressed={onSearchItemPressed}
-          />
-        )}
-      />
+      {isLoading || isRefetching ? (
+        <LoadingIndicator />
+      ) : (
+        <FlatList
+          ref={flatListRef}
+          bounces={false}
+          style={[style.container, {backgroundColor: theme.color.background}]}
+          onRefresh={onRefresh}
+          refreshing={isRefetching}
+          data={filterResult}
+          ListEmptyComponent={<ListEmpty />}
+          ListHeaderComponent={
+            <SearchHeader
+              onBackButtonPressed={onBackButtonPressed}
+              search={search ?? ''}
+              updateSearch={updateSearch}
+            />
+          }
+          stickyHeaderIndices={[0]}
+          renderItem={({item}) => (
+            <SearchListItem
+              id={extractIdFromUrl(item?.url) ?? ''}
+              name={item?.name ?? ''}
+              onSearchItemPressed={onSearchItemPressed}
+            />
+          )}
+        />
+      )}
     </SafeAreaView>
   );
 };
