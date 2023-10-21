@@ -21,6 +21,10 @@
 
 Go to the [Releases](https://github.com/yujune/pokemon/releases) to download the latest APK.
 
+## Know Issues
+
+1. About, Base State and Evolution page in pokemon details will scroll out of bound due to the height of Gallery's page is the highest.
+
 ## Todos
 
 - [x] App - Support different theme.
